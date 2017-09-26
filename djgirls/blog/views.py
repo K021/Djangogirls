@@ -4,7 +4,8 @@ from blog.models import Post
 
 
 def post_list(request):
-    posts = Post.objects.filter(published_date__isnull=False)
+    # posts = Post.objects.filter(published_date__isnull=False)
+    posts = Post.objects.all()
     context = {
         # value는 QuerySet
         'posts': posts,

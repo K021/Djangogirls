@@ -17,7 +17,15 @@ import os
 # 하위폴더로 갈 때: os.path.join(BASE_DIR, <바로 하위 폴더>)
 # __file__이 setting.py를 의미한다. 따라서 아래 명령어는 두 번 올라가면 BASE_DIR 라는 의미
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# 템플릿 파일을 저장할 'templateㄴ' 폴더
 TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
+# 새로만든 static 디렉토리를 가리키도록 os.path를 사용해 변수 할당
+# 정적 파일을 저장할 'static'폴더
+STATIC_DIR = os.path.join(BASE_DIR, 'static')
+# 장고에서 정적파일을 검색하고 가져올 폴더 목록
+STATICFILES_DIRS = [
+    STATIC_DIR,
+]
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
