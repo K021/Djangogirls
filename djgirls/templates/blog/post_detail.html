@@ -1,28 +1,12 @@
-<!--static은 기본 태그가 아니므로 로드해야 한다 -->
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <!--여기서 static은 template 태그라고 불린다-->
-    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
-    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
-    <title>The Blog</title>
-</head>
-<body>
-<div class="container">
-    <h1 class="blog-title"><a>The Blog</a></h1>
-    <div class="post-container">
-        <div class="post">
-            <h4 class="post-title">{{ post.title }}</h4>
-            <p class="content">{{ post.content|linebreaksbr }}</p>
-            <p class="right-text">{{ post.created_date }} | <strong>Date</strong></p>
-            <p class="right-text">{{ post.author.username }} | <strong>Author</strong></p>
-        </div>
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="post-container">
+    <div class="post">
+        <h4 class="post-title">{{ post.title }}</h4>
+        <p class="content">{{ post.content|linebreaksbr }}</p>
+        <p class="right-text">{{ post.created_date }} | <strong>Date</strong></p>
+        <p class="right-text">{{ post.author.username }} | <strong>Author</strong></p>
     </div>
 </div>
-</body>
-</html>
+{% endblock %}

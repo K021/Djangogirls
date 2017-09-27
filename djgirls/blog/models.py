@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.db import models
+from django.utils import timezone
 
 
 class Post(models.Model):
@@ -11,3 +12,12 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+    def publish(self):
+        self.published_date = timezone.now()
+        # save는 models.Model의 메서드. save를 하지 않으면 DB에 저장되지 않는다.
+        self.save()
+
+    def hide(self):
+        self.published_date = None
+        self.save()

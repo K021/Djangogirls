@@ -1,11 +1,31 @@
-h1 a {
+h1, a {
     color: #FCA205;
 }
+a:hover {
+  color: #FC1100;
+  text-decoration: none;
+}
+a.right-text {
+  text-align: right;
+  display: inline-block;
+  float: right;
+  margin-top: 10px;
+}
 body {
-    padding-left: 15px;
+  margin-top: 50px;
+  margin-bottom: 100px;
+  padding-left: 15px;
 }
 .content {
     padding-left: 20px;
+}
+.right-inline{
+  display: inline;
+  float: right;
+}
+.left-inline {
+  display: inline;
+  float: left;
 }
 .blog-title {
     color: #FCA205;
