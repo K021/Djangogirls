@@ -23,20 +23,21 @@ def post_list(request):
 #  템플릿은 'blog/post_detail.html'을 사용
 
 
-def post_detail(request, pk, ask_delete=None):
+def post_detail(request, pk, ask_delete=False):
     try:
         post = Post.objects.get(pk=pk)
     except Post.DoesNotExist:
         return HttpResponse('Post #{} does not exist'.format(pk))
+    # ask_delete 값이 있으면 모달 띄워줌
     if ask_delete:
         context = {
             'post': post,
-            'delete': True,
+            'ask_delete': True,
         }
         return render(request, 'blog/post_detail.html', context)
     context = {
         'post': post,
-        'delete': False,
+        'ask_delete': False,
     }
     return render(request, 'blog/post_detail.html', context)
 
@@ -69,13 +70,8 @@ def post_add(request):
         return render(request, 'blog/post_form.html', context)
 
 
-def post_delete(request, pk, delete_request=None):
-    if delete_request:
-        context = {
-            'delete': True,
-        }
-        return render(request, 'blog/post_detail.html', context)
-    elif request.method == 'POST':
+def post_delete(request, pk):
+    if request.method == 'POST':
         p = Post.objects.get(pk=pk)
         p.delete()
         return redirect('/')
