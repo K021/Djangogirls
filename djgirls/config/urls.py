@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from blog.views import post_list, post_detail, post_add, post_test
+from blog.views import post_list, post_detail, post_add, post_test, post_delete
 
 urlpatterns = [
     # 정규표현식
@@ -23,7 +23,9 @@ urlpatterns = [
     url(r'^$', post_list, name='main'),
     # post/<숫자2개이상>/ 이 가능하도록 정규표현식 작성
     # 해당 숫자는 그룹으로 감싸고 'pk'라는 그룹명을 지정 pk는 primary key. 인스턴스의 id와 같다.
-    url(r'^post/(?P<pk>\d+)/', post_detail, name='post_detail'),
-    url(r'^post/add', post_add, name='post_add'),
-    url(r'^test/', post_test, name='post_test'),
+    url(r'^posts/(?P<pk>\d+)/$', post_detail, name='post_detail'),
+    url(r'^posts/(?P<pk>\d+)/(P<ask_delete>.*)/$', post_detail, name='post_detail_delete'),
+    url(r'^posts/add', post_add, name='post_add'),
+    url(r'^tests/', post_test, name='post_test'),
+    url(r'^posts/(?P<pk>\d+)/delete', post_delete, name='post_delete')
 ]

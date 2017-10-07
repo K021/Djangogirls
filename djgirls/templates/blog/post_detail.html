@@ -9,4 +9,16 @@
         <p class="right-text">{{ post.author.username }} | <strong>Author</strong></p>
     </div>
 </div>
+<form action="{% url 'post_detail_delete' pk=post.pk ask_delete=True %}" method="post">
+    {% csrf_token %}
+    <div class="form-group right-text" >
+        <div class="col-sm-offset-2 col-sm-10" style="padding: 0">
+            <button type="" class="btn btn-default right-inline" value="DEL">삭제하기</button>
+        </div>
+    </div>
+</form>
+<!--<a class="btn btn-default right-text" href="{% url 'post_delete' pk=post.pk %}">삭제하기</a>-->
+{% if delete %}
+    {% include 'blog/post_detail_delete.html' %}
+{% endif %}
 {% endblock %}
